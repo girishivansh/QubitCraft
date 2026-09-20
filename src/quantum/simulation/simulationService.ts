@@ -1,6 +1,7 @@
 import { SimulationRequest, SimulationResult } from './simulationTypes';
 
-const API_URL = 'http://localhost:8000/api/simulate';
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '');
+const API_URL = `${API_BASE_URL}/api/simulate`;
 
 export const simulationService = {
   async runSimulation(request: SimulationRequest): Promise<SimulationResult> {

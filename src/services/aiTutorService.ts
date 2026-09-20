@@ -29,8 +29,10 @@ export interface TutorResponse {
   suggestions: string[];
 }
 
+const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '');
+
 class AITutorService {
-  private apiUrl = 'http://localhost:8000/api/ai/tutor';
+  private apiUrl = `${API_BASE_URL}/api/ai/tutor`;
 
   async askTutor(request: TutorRequest): Promise<TutorResponse> {
     try {
