@@ -10,7 +10,7 @@ export function QiskitCodeViewer({ circuit }: QiskitCodeViewerProps) {
   
   return (
     <div className="space-y-4">
-      <h3 className="text-sm font-semibold text-slate-700 mb-2">Qiskit Code Equivalent</h3>
+      <h3 className="text-sm font-semibold text-slate-700 dark:text-white mb-2">Qiskit Code Equivalent</h3>
       <div className="bg-slate-900 rounded-md p-3 overflow-x-auto shadow-inner">
         <pre className="text-xs font-mono text-emerald-400 leading-relaxed">
           {code}

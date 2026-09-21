@@ -28,13 +28,13 @@ export function CircuitCanvas({ numQubits, operations, onAddOperation, onRemoveO
   };
 
   return (
-    <div className="flex-1 overflow-auto bg-gray-50 p-6">
-      <div className="inline-block min-w-full bg-white rounded-lg shadow p-6">
+    <div className="flex-1 overflow-auto bg-gray-50 dark:bg-[#070813] p-6">
+      <div className="inline-block min-w-full bg-white dark:bg-[#0d0e24] rounded-lg shadow border border-transparent dark:border-slate-800 p-6">
         <div className="flex">
           {/* Qubit Labels */}
           <div className="flex flex-col mr-4">
             {Array.from({ length: numQubits }).map((_, i) => (
-              <div key={i} className="h-12 flex items-center justify-end font-mono text-gray-600 font-medium">
+              <div key={i} className="h-12 flex items-center justify-end font-mono text-gray-600 dark:text-slate-300 font-medium">
                 q[{i}] |0⟩
               </div>
             ))}

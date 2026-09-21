@@ -21,7 +21,7 @@ export interface LearningRoadmapProps {
 export const LearningRoadmap: React.FC<LearningRoadmapProps> = ({ lessons, courseId }) => {
   return (
     <div className="relative">
-      <div className="absolute left-6 top-8 bottom-8 w-px bg-gray-200" />
+      <div className="absolute left-6 top-8 bottom-8 w-px bg-gray-200 dark:bg-slate-800" />
 
       <div className="space-y-12">
         {lessons.map((lesson, index) => {
@@ -39,7 +39,7 @@ export const LearningRoadmap: React.FC<LearningRoadmapProps> = ({ lessons, cours
               )}
               {/* Partial line fill for current segment */}
               {!isLast && isCurrent && (
-                <div className="absolute left-6 top-10 bottom-[-3rem] w-px bg-gradient-to-b from-indigo-600 to-gray-200" />
+                <div className="absolute left-6 top-10 bottom-[-3rem] w-px bg-gradient-to-b from-indigo-600 to-gray-200 dark:to-slate-800" />
               )}
 
               <div className="relative z-10 flex-shrink-0 mt-1">
@@ -49,49 +49,49 @@ export const LearningRoadmap: React.FC<LearningRoadmapProps> = ({ lessons, cours
                   </div>
                 )}
                 {isCurrent && (
-                  <div className="w-12 h-12 rounded-full bg-white border-2 border-indigo-600 text-indigo-600 flex items-center justify-center relative shadow-sm">
-                    <div className="absolute inset-0 rounded-full animate-ping bg-indigo-100 opacity-75" />
+                  <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0d0e24] border-2 border-indigo-600 text-indigo-600 dark:text-indigo-400 flex items-center justify-center relative shadow-sm">
+                    <div className="absolute inset-0 rounded-full animate-ping bg-indigo-100 dark:bg-indigo-950 opacity-75" />
                     <Play className="w-4 h-4 ml-0.5 relative z-10 fill-current" />
                   </div>
                 )}
                 {isAvailable && (
-                  <div className="w-12 h-12 rounded-full bg-white border-2 border-slate-200 text-slate-400 flex items-center justify-center hover:border-indigo-300 hover:text-indigo-500 transition-colors shadow-sm">
+                  <div className="w-12 h-12 rounded-full bg-white dark:bg-[#0d0e24] border-2 border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-300 flex items-center justify-center hover:border-indigo-300 dark:hover:border-indigo-500 hover:text-indigo-500 dark:hover:text-indigo-400 transition-colors shadow-sm">
                     <span className="font-semibold">{lesson.order}</span>
                   </div>
                 )}
                 {isLocked && (
-                  <div className="w-12 h-12 rounded-full bg-slate-50 border border-slate-200 text-slate-400 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-full bg-slate-50 dark:bg-[#0d0e24] border border-slate-200 dark:border-slate-700 text-slate-400 dark:text-slate-500 flex items-center justify-center">
                     <Lock className="w-4 h-4" />
                   </div>
                 )}
               </div>
 
-              <div className={`flex-grow bg-white rounded-2xl border ${isCurrent ? 'border-indigo-200 shadow-card-hover' : 'border-slate-100 shadow-sm'} p-6 transition-all hover:shadow-md ${isLocked ? 'opacity-70 grayscale-[0.5]' : ''}`}>
+              <div className={`flex-grow bg-white dark:bg-[#0d0e24] rounded-2xl border ${isCurrent ? 'border-indigo-200 dark:border-indigo-800/80 shadow-card-hover' : 'border-slate-100 dark:border-slate-800/80 shadow-sm'} p-6 transition-all hover:shadow-md ${isLocked ? 'opacity-70 grayscale-[0.5]' : ''}`}>
                 <div className="flex flex-col md:flex-row md:items-start justify-between gap-4 mb-4">
                   <div>
                     <div className="flex items-center gap-2 mb-2">
-                      <span className="text-xs font-bold tracking-wider text-slate-400 uppercase">
+                      <span className="text-xs font-bold tracking-wider text-slate-400 dark:text-slate-500 uppercase">
                         Lesson {lesson.order}
                       </span>
                       {isCompleted && (
-                        <span className="text-[10px] font-bold bg-green-100 text-green-700 px-2 py-0.5 rounded-full uppercase tracking-wider">
+                        <span className="text-[10px] font-bold bg-green-100 dark:bg-green-950/60 text-green-700 dark:text-green-300 px-2 py-0.5 rounded-full uppercase tracking-wider">
                           Completed
                         </span>
                       )}
                     </div>
-                    <h3 className={`text-xl font-bold ${isLocked ? 'text-slate-600' : 'text-navy-900'} mb-2`}>
+                    <h3 className={`text-xl font-bold ${isLocked ? 'text-slate-600 dark:text-slate-400' : 'text-navy-900 dark:text-white'} mb-2`}>
                       {lesson.title}
                     </h3>
-                    <p className="text-slate-600 text-sm leading-relaxed max-w-2xl">
+                    <p className="text-slate-600 dark:text-slate-300 text-sm leading-relaxed max-w-2xl">
                       {lesson.description}
                     </p>
                   </div>
 
                   <div className="flex flex-wrap gap-2 md:flex-col md:items-end">
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 text-slate-600 rounded-md text-xs font-semibold border border-slate-100">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-slate-50 dark:bg-[#131533]/80 text-slate-600 dark:text-slate-300 rounded-md text-xs font-semibold border border-slate-100 dark:border-slate-700/60">
                       <Clock className="w-3.5 h-3.5" /> {lesson.duration}
                     </span>
-                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 text-amber-700 rounded-md text-xs font-semibold border border-amber-100">
+                    <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-amber-50 dark:bg-amber-950/60 text-amber-700 dark:text-amber-300 rounded-md text-xs font-semibold border border-amber-100 dark:border-amber-800/60">
                       <Star className="w-3.5 h-3.5 fill-current" /> {lesson.xp} XP
                     </span>
                   </div>

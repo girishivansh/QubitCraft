@@ -11,9 +11,9 @@ export interface TestimonialCardProps {
 
 export function TestimonialCard({ quote, name, role, rating, initials, color }: TestimonialCardProps) {
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-6 md:p-8 flex flex-col h-full">
-      <span className="text-4xl leading-none text-indigo-200 font-serif mb-4 block">❝</span>
-      <p className="text-sm md:text-base text-slate-600 leading-relaxed mb-6 flex-grow">
+    <div className="bg-white dark:bg-[#0d0e24] rounded-xl border border-gray-100 dark:border-slate-800 p-6 md:p-8 flex flex-col h-full">
+      <span className="text-4xl leading-none text-indigo-200 dark:text-indigo-800 font-serif mb-4 block">❝</span>
+      <p className="text-sm md:text-base text-slate-600 dark:text-slate-300 leading-relaxed mb-6 flex-grow">
         {quote}
       </p>
       <div className="flex items-center justify-between mt-auto">
@@ -22,8 +22,8 @@ export function TestimonialCard({ quote, name, role, rating, initials, color }: 
             {initials}
           </div>
           <div>
-            <div className="text-sm font-semibold text-navy-900">{name}</div>
-            <div className="text-xs text-slate-400">{role}</div>
+            <div className="text-sm font-semibold text-navy-900 dark:text-white">{name}</div>
+            <div className="text-xs text-slate-400 dark:text-slate-500">{role}</div>
           </div>
         </div>
         <div className="flex items-center">

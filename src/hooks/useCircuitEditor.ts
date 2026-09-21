@@ -74,6 +74,13 @@ export function useCircuitEditor(initialState?: CircuitState) {
     saveToHistory([]);
   }, [saveToHistory]);
 
+  const loadCircuit = useCallback((state: CircuitState) => {
+    setNumQubits(state.numQubits);
+    setOperations(state.operations);
+    setHistory([state.operations]);
+    setHistoryIndex(0);
+  }, []);
+
   return {
     numQubits,
     setNumQubits,
@@ -86,6 +93,7 @@ export function useCircuitEditor(initialState?: CircuitState) {
     canUndo: historyIndex > 0,
     canRedo: historyIndex < history.length - 1,
     clear,
+    loadCircuit,
     circuitState: { numQubits, operations }
   };
 }

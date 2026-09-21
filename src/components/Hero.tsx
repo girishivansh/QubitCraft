@@ -11,20 +11,20 @@ export function Hero() {
           
           {/* Left Column */}
           <div className="w-full lg:w-1/2 flex flex-col items-start text-left z-10 scroll-slide-left">
-            <div className="inline-flex items-center gap-2 bg-indigo-50 border border-indigo-100 rounded-full px-4 py-1.5 text-xs font-medium mb-8">
+            <div className="inline-flex items-center gap-2 bg-indigo-50 dark:bg-indigo-950/50 border border-indigo-100 dark:border-indigo-900/60 rounded-full px-4 py-1.5 text-xs font-medium mb-8">
               <span className="w-2 h-2 rounded-full bg-emerald-500"></span>
-              <span className="text-indigo-700 font-bold">{BRAND.sihCode}</span>
+              <span className="text-indigo-700 dark:text-indigo-300 font-bold">{BRAND.sihCode}</span>
               <span className="text-slate-400 mx-1">•</span>
-              <span className="text-slate-600">{BRAND.sihLabel}</span>
+              <span className="text-slate-600 dark:text-slate-400">{BRAND.sihLabel}</span>
             </div>
             
-            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-navy-900 leading-[1.1] tracking-tight">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold text-navy-900 dark:text-white leading-[1.1] tracking-tight">
               <span className="block mb-2">AI-Powered.</span>
               <span className="block mb-2">Interactive.</span>
-              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500">Quantum Learning.</span>
+              <span className="block text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-blue-500 dark:from-indigo-400 dark:to-blue-400">Quantum Learning.</span>
             </h1>
             
-            <p className="text-lg text-slate-500 max-w-lg mt-6 leading-relaxed">
+            <p className="text-lg text-slate-500 dark:text-slate-400 max-w-lg mt-6 leading-relaxed">
               {BRAND.heroSubtext}
             </p>
             
@@ -37,22 +37,22 @@ export function Hero() {
               </Button>
             </div>
             
-            <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100">
+            <div className="flex items-center gap-4 mt-8 pt-6 border-t border-gray-100 dark:border-slate-800">
               <div className="flex -space-x-2">
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[4]">JD</div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-emerald-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[3]">SK</div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-amber-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[2]">AM</div>
-                <div className="w-8 h-8 rounded-full border-2 border-white bg-rose-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[1]">RT</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white dark:border-[#070813] bg-blue-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[4]">JD</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white dark:border-[#070813] bg-emerald-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[3]">SK</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white dark:border-[#070813] bg-amber-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[2]">AM</div>
+                <div className="w-8 h-8 rounded-full border-2 border-white dark:border-[#070813] bg-rose-500 flex items-center justify-center text-[10px] font-bold text-white shadow-sm z-[1]">RT</div>
               </div>
-              <p className="text-sm text-slate-500 font-medium">
-                Join <span className="text-navy-900 font-bold">1,200+</span> learners exploring quantum
+              <p className="text-sm text-slate-500 dark:text-slate-400 font-medium">
+                Join <span className="text-navy-900 dark:text-white font-bold">1,200+</span> learners exploring quantum
               </p>
             </div>
           </div>
           
           {/* Right Column */}
           <div className="w-full lg:w-1/2 relative z-10 scroll-slide-right">
-            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100/50 to-blue-50/50 rounded-3xl transform rotate-3 scale-105 -z-10 blur-xl"></div>
+            <div className="absolute inset-0 bg-gradient-to-tr from-indigo-100/50 to-blue-50/50 dark:from-indigo-950/30 dark:to-blue-950/20 rounded-3xl transform rotate-3 scale-105 -z-10 blur-xl"></div>
             <CircuitPreview />
           </div>
           
@@ -60,7 +60,7 @@ export function Hero() {
       </div>
       
       {/* Background Decor */}
-      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-indigo-50/50 rounded-full blur-3xl -z-20 pointer-events-none"></div>
+      <div className="absolute top-0 right-0 -translate-y-1/4 translate-x-1/4 w-[800px] h-[800px] bg-indigo-50/50 dark:bg-indigo-950/20 rounded-full blur-3xl -z-20 pointer-events-none"></div>
     </section>
   );
 }

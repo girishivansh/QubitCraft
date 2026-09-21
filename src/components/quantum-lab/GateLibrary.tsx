@@ -10,12 +10,12 @@ export function GateLibrary({ onDragStart }: GateLibraryProps) {
   const categories: ('single' | 'multi' | 'measurement')[] = ['single', 'multi', 'measurement'];
 
   return (
-    <div className="w-64 border-r border-gray-200 bg-white p-4 h-full overflow-y-auto">
-      <h2 className="text-lg font-bold mb-4">Gate Library</h2>
+    <div className="w-64 border-r border-gray-200 dark:border-slate-800 bg-white dark:bg-[#0d0e24] p-4 h-full overflow-y-auto">
+      <h2 className="text-lg font-bold text-navy-900 dark:text-white mb-4">Gate Library</h2>
       
       {categories.map(category => (
         <div key={category} className="mb-6">
-          <h3 className="text-sm font-semibold text-gray-500 uppercase mb-3 capitalize">{category} Qubit Gates</h3>
+          <h3 className="text-sm font-semibold text-gray-500 dark:text-slate-400 uppercase mb-3 capitalize">{category} Qubit Gates</h3>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(GATE_INFO)
               .filter(([_, info]) => info.category === category)

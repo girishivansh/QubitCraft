@@ -54,11 +54,11 @@ export function ExecutionTimeline({ result, circuit }: ExecutionTimelineProps) {
     <div className="space-y-6 flex flex-col h-full">
       
       {/* Timeline Controls */}
-      <div className="bg-white p-4 rounded-lg border border-slate-200 shadow-sm">
+      <div className="bg-white dark:bg-[#0d0e24] p-4 rounded-lg border border-slate-200 dark:border-slate-800 shadow-sm">
         <div className="flex flex-col gap-4">
           <div className="flex items-center justify-between">
-            <h3 className="text-sm font-semibold text-slate-800">Execution Timeline</h3>
-            <div className="text-xs text-slate-500 bg-slate-100 px-2 py-1 rounded">
+            <h3 className="text-sm font-semibold text-slate-800 dark:text-white">Execution Timeline</h3>
+            <div className="text-xs text-slate-500 dark:text-slate-300 bg-slate-100 dark:bg-slate-800 px-2 py-1 rounded">
               Step {currentStepIndex + 1} of {steps.length}
             </div>
           </div>
@@ -67,14 +67,14 @@ export function ExecutionTimeline({ result, circuit }: ExecutionTimelineProps) {
             <button 
               onClick={() => setCurrentStepIndex(0)} 
               disabled={currentStepIndex === 0}
-              className="p-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <SkipBack className="w-4 h-4" />
             </button>
             <button 
               onClick={() => setCurrentStepIndex(prev => Math.max(0, prev - 1))} 
               disabled={currentStepIndex === 0}
-              className="p-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <StepBack className="w-4 h-4" />
             </button>
@@ -93,14 +93,14 @@ export function ExecutionTimeline({ result, circuit }: ExecutionTimelineProps) {
             <button 
               onClick={() => setCurrentStepIndex(prev => Math.min(steps.length - 1, prev + 1))} 
               disabled={currentStepIndex === steps.length - 1}
-              className="p-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <StepForward className="w-4 h-4" />
             </button>
             <button 
               onClick={() => setCurrentStepIndex(steps.length - 1)} 
               disabled={currentStepIndex === steps.length - 1}
-              className="p-1.5 rounded text-slate-600 hover:bg-slate-100 disabled:opacity-50 disabled:cursor-not-allowed"
+              className="p-1.5 rounded text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               <SkipForward className="w-4 h-4" />
             </button>
@@ -109,12 +109,12 @@ export function ExecutionTimeline({ result, circuit }: ExecutionTimelineProps) {
       </div>
 
       {/* Explanation */}
-      <div className="bg-indigo-50 border border-indigo-100 rounded-lg p-4">
-        <h3 className="text-sm font-semibold text-indigo-900 flex items-center mb-2">
+      <div className="bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800/50 rounded-lg p-4">
+        <h3 className="text-sm font-semibold text-indigo-900 dark:text-indigo-200 flex items-center mb-2">
           <Info className="w-4 h-4 mr-2" />
           Why did this happen?
         </h3>
-        <p className="text-xs text-indigo-800 leading-relaxed">
+        <p className="text-xs text-indigo-800 dark:text-indigo-300 leading-relaxed">
           {getExplanation()}
         </p>
       </div>
@@ -122,14 +122,14 @@ export function ExecutionTimeline({ result, circuit }: ExecutionTimelineProps) {
       {/* Visualizations at current step */}
       <div className="flex-1 space-y-6 overflow-y-auto pr-2 pb-10">
         <div>
-          <h3 className="text-sm font-semibold text-slate-800 mb-3 border-b pb-2">State at this step</h3>
+          <h3 className="text-sm font-semibold text-slate-800 dark:text-white mb-3 border-b border-slate-200 dark:border-slate-800 pb-2">State at this step</h3>
           <div className="h-[400px]">
             <BlochSphere blochVectors={currentStep.blochVectors} numQubits={circuit.numQubits} />
           </div>
         </div>
         
         {currentStep.statevector && (
-          <div className="pt-4 border-t border-slate-200">
+          <div className="pt-4 border-t border-slate-200 dark:border-slate-800">
             <StateVectorView statevector={currentStep.statevector} numQubits={circuit.numQubits} />
           </div>
         )}

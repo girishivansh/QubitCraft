@@ -11,21 +11,21 @@ export interface BreadcrumbProps {
 
 export const Breadcrumb: React.FC<BreadcrumbProps> = ({ items }) => {
   return (
-    <nav className="flex items-center text-sm text-slate-500 font-medium">
+    <nav className="flex items-center text-sm text-slate-500 dark:text-slate-400 font-medium">
       {items.map((item, index) => {
         const isLast = index === items.length - 1;
         
         return (
           <React.Fragment key={index}>
             {index > 0 && (
-              <ChevronRight className="w-4 h-4 mx-2 text-slate-400 flex-shrink-0" />
+              <ChevronRight className="w-4 h-4 mx-2 text-slate-400 dark:text-slate-600 flex-shrink-0" />
             )}
             {isLast || !item.href ? (
-              <span className="text-slate-800">{item.label}</span>
+              <span className="text-slate-800 dark:text-slate-200">{item.label}</span>
             ) : (
               <Link
                 to={item.href}
-                className="hover:text-indigo-600 transition-colors"
+                className="hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
               >
                 {item.label}
               </Link>

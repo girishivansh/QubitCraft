@@ -26,7 +26,7 @@ import Profile from './pages/Profile';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070813] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1 pt-16 lg:pt-[72px]">
@@ -40,7 +40,7 @@ function AppLayout({ children }: { children: React.ReactNode }) {
 
 function LessonAppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col bg-white">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070813] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <ScrollToTop />
       <Navbar />
       <main className="flex-1 pt-16 lg:pt-[72px]">
@@ -54,7 +54,7 @@ function LessonAppLayout({ children }: { children: React.ReactNode }) {
 
 function AuthPageLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col bg-white dark:bg-[#070813] text-slate-900 dark:text-slate-100 transition-colors duration-200">
       <ScrollToTop />
       {children}
     </div>
@@ -90,6 +90,7 @@ export default function App() {
       {/* Public routes with Navbar/Footer */}
       <Route path="/" element={<AppLayout><Home /></AppLayout>} />
       <Route path="/about" element={<AppLayout><About /></AppLayout>} />
+      <Route path="/algorithms" element={<AppLayout><Algorithms /></AppLayout>} />
 
       {/* Protected routes with Navbar/Footer */}
       <Route path="/learn" element={
@@ -110,14 +111,14 @@ export default function App() {
       <Route path="/quantum-lab" element={
         <AppLayout><ProtectedRoute><QuantumLab /></ProtectedRoute></AppLayout>
       } />
+      <Route path="/playground" element={
+        <AppLayout><ProtectedRoute><QuantumLab /></ProtectedRoute></AppLayout>
+      } />
       <Route path="/quantum-lab/experiment/:experimentId" element={
         <AppLayout><ProtectedRoute><QuantumLab /></ProtectedRoute></AppLayout>
       } />
       <Route path="/experiments" element={
         <AppLayout><ProtectedRoute><Experiments /></ProtectedRoute></AppLayout>
-      } />
-      <Route path="/algorithms" element={
-        <AppLayout><ProtectedRoute><Algorithms /></ProtectedRoute></AppLayout>
       } />
       <Route path="/dashboard" element={
         <AppLayout><ProtectedRoute><Dashboard /></ProtectedRoute></AppLayout>

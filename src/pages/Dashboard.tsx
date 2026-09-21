@@ -66,10 +66,10 @@ export default function Dashboard() {
     <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8 py-10 md:py-16">
       {/* Greeting */}
       <div className="mb-10">
-        <h1 className="text-2xl md:text-3xl font-bold text-navy-900">
+        <h1 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white">
           {greeting}, {firstName}.
         </h1>
-        <p className="text-base text-slate-500 mt-1">
+        <p className="text-base text-slate-500 dark:text-slate-400 mt-1">
           Ready to continue your quantum journey?
         </p>
       </div>
@@ -79,14 +79,14 @@ export default function Dashboard() {
         {stats.map(({ label, value, icon: Icon, color }) => (
           <div
             key={label}
-            className="bg-white rounded-card border border-gray-100 shadow-card p-5 flex items-center gap-4"
+            className="bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800/80 shadow-card p-5 flex items-center gap-4 transition-colors"
           >
-            <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gray-50 flex items-center justify-center ${color}`}>
+            <div className={`flex-shrink-0 w-10 h-10 rounded-xl bg-gray-50 dark:bg-[#131533]/80 flex items-center justify-center ${color}`}>
               <Icon className="w-5 h-5" />
             </div>
             <div>
-              <p className="text-xl font-bold text-navy-900">{value}</p>
-              <p className="text-xs text-slate-500">{label}</p>
+              <p className="text-xl font-bold text-navy-900 dark:text-white">{value}</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">{label}</p>
             </div>
           </div>
         ))}
@@ -94,14 +94,14 @@ export default function Dashboard() {
 
       {/* Recommended Next + Progress */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-10">
-        <div className="lg:col-span-2 bg-gradient-to-br from-indigo-50 to-blue-50 rounded-card border border-indigo-100 p-6 md:p-8 flex flex-col justify-center">
-          <p className="text-xs font-medium text-indigo-600 uppercase tracking-wider mb-2">
+        <div className="lg:col-span-2 bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/40 dark:to-blue-950/30 rounded-card border border-indigo-100 dark:border-indigo-800/50 p-6 md:p-8 flex flex-col justify-center transition-colors">
+          <p className="text-xs font-medium text-indigo-600 dark:text-indigo-400 uppercase tracking-wider mb-2">
             {continueLearningData ? 'Continue Learning' : 'Recommended Path'}
           </p>
-          <h2 className="text-xl md:text-2xl font-bold text-navy-900 mb-2">
+          <h2 className="text-xl md:text-2xl font-bold text-navy-900 dark:text-white mb-2">
             {continueLearningData ? continueLearningData.courseTitle : recommendedPath?.title}
           </h2>
-          <p className="text-sm text-slate-600 mb-6 max-w-lg">
+          <p className="text-sm text-slate-600 dark:text-slate-300 mb-6 max-w-lg">
             {continueLearningData 
               ? `You're on lesson ${continueLearningData.lessonNumber} of ${continueLearningData.totalLessons}. Next up: ${continueLearningData.lessonTitle}.`
               : recommendedPath?.description}
@@ -109,17 +109,17 @@ export default function Dashboard() {
           
           <Link
             to={continueLearningData ? `/learn/course/${continueLearningData.courseId}/lesson/${continueLearningData.lessonId}` : `/learn/path/${recommendedPath?.id}`}
-            className="inline-flex items-center gap-2 h-10 px-6 rounded-[12px] bg-gradient-to-r from-indigo-600 to-blue-500 text-sm font-semibold text-white hover:from-indigo-500 hover:to-blue-400 transition-all w-fit"
+            className="inline-flex items-center gap-2 h-10 px-6 rounded-[12px] bg-gradient-to-r from-indigo-600 to-blue-500 text-sm font-semibold text-white hover:from-indigo-500 hover:to-blue-400 transition-all w-fit shadow-sm"
           >
             {continueLearningData ? 'Resume Lesson' : 'Start Path'}
             <ArrowRight className="w-4 h-4" />
           </Link>
         </div>
 
-        <div className="bg-white rounded-card border border-gray-100 shadow-card p-6 flex flex-col items-center justify-center text-center">
+        <div className="bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800/80 shadow-card p-6 flex flex-col items-center justify-center text-center transition-colors">
           <div className="relative w-24 h-24 mb-4">
             <svg className="w-24 h-24 -rotate-90" viewBox="0 0 100 100">
-              <circle cx="50" cy="50" r="42" fill="none" stroke="#f1f5f9" strokeWidth="8" />
+              <circle cx="50" cy="50" r="42" fill="none" stroke="currentColor" className="text-slate-100 dark:text-slate-800" strokeWidth="8" />
               <circle
                 cx="50" cy="50" r="42" fill="none"
                 stroke="url(#progressGrad)"
@@ -136,31 +136,31 @@ export default function Dashboard() {
                 </linearGradient>
               </defs>
             </svg>
-            <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-navy-900">
+            <span className="absolute inset-0 flex items-center justify-center text-lg font-bold text-navy-900 dark:text-white">
               {progressPercent}%
             </span>
           </div>
-          <p className="text-sm font-semibold text-navy-900">Platform Progress</p>
-          <p className="text-xs text-slate-500 mt-1 capitalize">Level: {skillLevel}</p>
+          <p className="text-sm font-semibold text-navy-900 dark:text-white">Platform Progress</p>
+          <p className="text-xs text-slate-500 dark:text-slate-400 mt-1 capitalize">Level: {skillLevel}</p>
         </div>
       </div>
 
       {/* Quick Actions */}
-      <h2 className="text-lg font-semibold text-navy-900 mb-4">Quick Actions</h2>
+      <h2 className="text-lg font-semibold text-navy-900 dark:text-white mb-4">Quick Actions</h2>
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         {quickActions.map(({ label, description, href, icon: Icon, gradient }) => (
           <Link
             key={label}
             to={href}
-            className="group bg-white rounded-card border border-gray-100 shadow-card hover:shadow-card-hover p-5 transition-all"
+            className="group bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800/80 shadow-card hover:shadow-card-hover hover:border-indigo-200 dark:hover:border-indigo-500/40 p-5 transition-all"
           >
             <div className={`w-10 h-10 rounded-xl bg-gradient-to-r ${gradient} flex items-center justify-center mb-4`}>
               <Icon className="w-5 h-5 text-white" />
             </div>
-            <h3 className="text-sm font-semibold text-navy-900 group-hover:text-indigo-600 transition-colors">
+            <h3 className="text-sm font-semibold text-navy-900 dark:text-white group-hover:text-indigo-600 dark:group-hover:text-indigo-400 transition-colors">
               {label}
             </h3>
-            <p className="text-xs text-slate-500 mt-1">{description}</p>
+            <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">{description}</p>
           </Link>
         ))}
       </div>

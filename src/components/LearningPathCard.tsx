@@ -74,28 +74,28 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
   const styles = colorMap[color];
 
   return (
-    <div className="bg-white rounded-card border border-gray-100 p-6 md:p-8 relative overflow-hidden flex flex-col h-full">
+    <div className="bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800 p-6 md:p-8 relative overflow-hidden flex flex-col h-full">
       <div className="flex items-center gap-2 mb-3 relative z-10">
         <div className={`w-2.5 h-2.5 rounded-full ${styles.dot}`}></div>
         <h3 className={`text-lg font-bold ${styles.text}`}>{level}</h3>
       </div>
       
-      <p className="text-sm text-slate-500 mb-5 relative z-10">{description}</p>
+      <p className="text-sm text-slate-500 dark:text-slate-400 mb-5 relative z-10">{description}</p>
       
       <ul className="flex-1 space-y-1 mb-6 relative z-10">
         {topics.map((topic, index) => (
           <li key={index} className="flex items-start gap-2 py-1.5">
             <CircleCheck className={`w-4 h-4 shrink-0 mt-0.5 ${styles.icon}`} />
-            <span className="text-sm text-slate-600">{topic}</span>
+            <span className="text-sm text-slate-600 dark:text-slate-300">{topic}</span>
           </li>
         ))}
       </ul>
 
       <div className="flex items-center gap-4 mt-auto relative z-10 pt-2">
-        <button className={`px-4 py-1.5 rounded-button text-sm font-medium border transition-colors bg-white ${styles.button}`}>
+        <button className={`px-4 py-1.5 rounded-button text-sm font-medium border transition-colors bg-white dark:bg-[#070813] ${styles.button}`}>
           {buttonLabel}
         </button>
-        <span className="text-xs text-slate-400 font-medium">{lessonCount} lessons</span>
+        <span className="text-xs text-slate-400 dark:text-slate-500 font-medium">{lessonCount} lessons</span>
       </div>
 
       <div className={`absolute -bottom-4 -right-4 opacity-10 pointer-events-none ${styles.text}`}>

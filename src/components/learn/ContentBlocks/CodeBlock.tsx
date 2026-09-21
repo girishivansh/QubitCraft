@@ -57,7 +57,7 @@ export const CodeBlock: React.FC<CodeBlockProps> = ({ block }) => {
         </div>
       </div>
       {block.explanation && (
-        <p className="mt-3 text-sm text-slate-600 px-1">
+        <p className="mt-3 text-sm text-slate-600 dark:text-slate-300 px-1">
           {block.explanation}
         </p>
       )}

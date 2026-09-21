@@ -21,7 +21,7 @@ const colorMap: Record<string, string> = {
 export const Stats: React.FC = () => {
   return (
     <section className="scroll-trigger max-w-container mx-auto px-4 md:px-6 lg:px-8 py-16">
-      <h2 className="text-2xl md:text-3xl font-bold text-navy-900 text-center mb-12 stagger-child">
+      <h2 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white text-center mb-12 stagger-child">
         Why Learn with QubitCraft?
       </h2>
       
@@ -32,13 +32,13 @@ export const Stats: React.FC = () => {
           
           return (
             <div key={index} className="flex flex-col items-center text-center stagger-child">
-              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${badgeColor}`}>
+              <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-3 ${badgeColor} dark:bg-opacity-20`}>
                 {Icon && <Icon className="w-6 h-6" />}
               </div>
-              <div className="text-2xl md:text-3xl font-bold text-navy-900">
+              <div className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white">
                 {stat.value}
               </div>
-              <div className="text-sm text-slate-500 mt-1">
+              <div className="text-sm text-slate-500 dark:text-slate-400 mt-1">
                 {stat.label}
               </div>
             </div>

@@ -28,12 +28,12 @@ export const FeatureCard: React.FC<FeatureCardProps> = ({ icon, title, descripti
   const Icon = iconMap[icon];
   
   return (
-    <div className="bg-white rounded-xl border border-gray-100 p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
-      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorMap[color]}`}>
+    <div className="bg-white dark:bg-[#0d0e24] rounded-xl border border-gray-100 dark:border-slate-800 p-6 hover:shadow-card-hover hover:-translate-y-1 transition-all duration-300 flex flex-col">
+      <div className={`w-12 h-12 rounded-xl flex items-center justify-center mb-4 ${colorMap[color]} dark:bg-opacity-20`}>
         {Icon && <Icon className="w-6 h-6" />}
       </div>
-      <h3 className="text-base font-semibold text-navy-900 mb-2">{title}</h3>
-      <p className="text-sm text-slate-500 leading-relaxed mb-4">{description}</p>
+      <h3 className="text-base font-semibold text-navy-900 dark:text-white mb-2">{title}</h3>
+      <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-4">{description}</p>
       <div className="mt-auto">
         <ArrowRight className={`w-5 h-5 opacity-60 hover:opacity-100 transition-opacity ${colorMap[color].split(' ')[1]}`} />
       </div>

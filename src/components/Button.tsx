@@ -13,9 +13,9 @@ interface ButtonProps {
 }
 
 const variants = {
-  primary: 'btn-gradient text-white hover:shadow-card-hover',
-  secondary: 'bg-white border border-gray-200 text-navy-900 hover:border-indigo-300',
-  ghost: 'bg-transparent text-indigo-600 hover:bg-indigo-50',
+  primary: 'btn-gradient text-white hover:shadow-card-hover shadow-md hover:shadow-indigo-500/25',
+  secondary: 'bg-white dark:bg-slate-800/90 border border-gray-200 dark:border-slate-700 text-slate-800 dark:text-white hover:bg-gray-50 dark:hover:bg-slate-700 hover:border-indigo-300 dark:hover:border-slate-600 shadow-sm',
+  ghost: 'bg-transparent text-indigo-600 dark:text-indigo-400 hover:bg-indigo-50 dark:hover:bg-indigo-950/40',
 };
 
 const sizes = {

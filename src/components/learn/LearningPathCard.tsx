@@ -18,9 +18,9 @@ const iconMap: Record<string, React.ReactNode> = {
 };
 
 const difficultyColors = {
-  beginner: 'bg-green-50 text-green-600 border-green-100',
-  intermediate: 'bg-blue-50 text-blue-600 border-blue-100',
-  advanced: 'bg-purple-50 text-purple-600 border-purple-100',
+  beginner: 'bg-green-50 dark:bg-green-950/60 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800/60',
+  intermediate: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
+  advanced: 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/60',
 };
 
 export const LearningPathCard: React.FC<LearningPathCardProps> = ({
@@ -33,7 +33,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
   const isStarted = progress > 0;
 
   return (
-    <div className="bg-white rounded-[20px] shadow-card hover:shadow-card-hover transition-all duration-300 border border-slate-100 flex flex-col h-full relative overflow-hidden group">
+    <div className="bg-white dark:bg-[#0d0e24] rounded-[20px] shadow-card hover:shadow-card-hover transition-all duration-300 border border-slate-100 dark:border-slate-800/80 flex flex-col h-full relative overflow-hidden group">
       {isRecommended && (
         <div className="absolute top-0 right-0 bg-indigo-600 text-white text-xs font-semibold px-3 py-1 rounded-bl-lg z-10 flex items-center gap-1 shadow-sm">
           <Star className="w-3 h-3 fill-current" /> Recommended
@@ -41,7 +41,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
       )}
       
       <div className="p-6 flex-grow flex flex-col">
-        <div className="w-16 h-16 rounded-2xl bg-indigo-50 flex items-center justify-center text-indigo-600 mb-5 group-hover:scale-110 transition-transform duration-300">
+        <div className="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 flex items-center justify-center text-indigo-600 dark:text-indigo-400 mb-5 group-hover:scale-110 transition-transform duration-300">
           {iconMap[path.icon] || <Atom className="w-8 h-8" />}
         </div>
         
@@ -54,15 +54,15 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
           </span>
         </div>
 
-        <h3 className="text-xl font-bold text-navy-900 mb-2">{path.title}</h3>
-        <p className="text-slate-600 text-sm mb-6 flex-grow line-clamp-3">{path.description}</p>
+        <h3 className="text-xl font-bold text-navy-900 dark:text-white mb-2">{path.title}</h3>
+        <p className="text-slate-600 dark:text-slate-300 text-sm mb-6 flex-grow line-clamp-3">{path.description}</p>
         
-        <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-slate-100">
-          <div className="flex items-center gap-2 text-slate-500">
+        <div className="grid grid-cols-2 gap-4 mb-6 pt-4 border-t border-slate-100 dark:border-slate-800/80">
+          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
             <BookOpen className="w-4 h-4" />
             <span className="text-sm">{path.lessonCount} Lessons</span>
           </div>
-          <div className="flex items-center gap-2 text-slate-500">
+          <div className="flex items-center gap-2 text-slate-500 dark:text-slate-400">
             <Clock className="w-4 h-4" />
             <span className="text-sm">{path.estimatedDuration}</span>
           </div>
@@ -71,7 +71,7 @@ export const LearningPathCard: React.FC<LearningPathCardProps> = ({
         <div className="mt-auto">
           {isStarted ? (
             <div className="mb-4">
-              <div className="flex justify-between text-xs font-medium text-slate-500 mb-1.5">
+              <div className="flex justify-between text-xs font-medium text-slate-500 dark:text-slate-400 mb-1.5">
                 <span>{completedLessons} / {path.lessonCount} lessons</span>
                 <span>{Math.round(progress)}%</span>
               </div>

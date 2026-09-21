@@ -74,7 +74,7 @@ export function QuantumLab() {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white" onDragEnd={handleDragEnd}>
+    <div className="flex flex-col h-full bg-white dark:bg-[#070813] text-slate-900 dark:text-slate-100" onDragEnd={handleDragEnd}>
       <LabToolbar 
         onUndo={undo} 
         onRedo={redo} 

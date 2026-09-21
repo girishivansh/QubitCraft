@@ -29,12 +29,12 @@ export function CircuitCell({ qubit, moment, operation, isControl, isTarget, con
 
   return (
     <div 
-      className="w-16 h-12 border border-gray-100 flex items-center justify-center relative group"
+      className="w-16 h-12 border border-gray-100 dark:border-slate-800/60 flex items-center justify-center relative group"
       onDragOver={handleDragOver}
       onDrop={handleDrop}
     >
       {/* Quantum Wire */}
-      <div className="absolute w-full h-px bg-gray-400 top-1/2 -translate-y-1/2 z-0" />
+      <div className="absolute w-full h-px bg-gray-400 dark:bg-slate-600 top-1/2 -translate-y-1/2 z-0" />
       
       {/* Control Line (Vertical) */}
       {controlTargetDelta !== undefined && (

@@ -42,7 +42,7 @@ export const LessonComplete: React.FC<LessonCompleteProps> = ({
 
       {/* Modal */}
       <div 
-        className={`relative w-full max-w-lg bg-white rounded-[24px] shadow-2xl overflow-hidden transform transition-all duration-500 delay-100 ${
+        className={`relative w-full max-w-lg bg-white dark:bg-[#0d0e24] rounded-[24px] shadow-2xl border border-transparent dark:border-slate-800 overflow-hidden transform transition-all duration-500 delay-100 ${
           mounted ? 'scale-100 opacity-100 translate-y-0' : 'scale-95 opacity-0 translate-y-8'
         }`}
       >
@@ -67,31 +67,31 @@ export const LessonComplete: React.FC<LessonCompleteProps> = ({
 
         <div className="p-8">
           <div className="flex flex-col gap-4 mb-8">
-            <div className="flex items-center justify-between p-4 bg-amber-50 border border-amber-100 rounded-2xl">
+            <div className="flex items-center justify-between p-4 bg-amber-50 dark:bg-amber-950/40 border border-amber-100 dark:border-amber-800/60 rounded-2xl">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 bg-amber-100 text-amber-600 rounded-full flex items-center justify-center">
+                <div className="w-10 h-10 bg-amber-100 dark:bg-amber-900/60 text-amber-600 dark:text-amber-400 rounded-full flex items-center justify-center">
                   <Star className="w-5 h-5 fill-current" />
                 </div>
                 <div>
-                  <div className="text-sm font-bold text-amber-800">Lesson XP</div>
-                  <div className="text-xs text-amber-600 font-medium">For completion & quizzes</div>
+                  <div className="text-sm font-bold text-amber-800 dark:text-amber-300">Lesson XP</div>
+                  <div className="text-xs text-amber-600 dark:text-amber-400 font-medium">For completion & quizzes</div>
                 </div>
               </div>
-              <div className="text-2xl font-black text-amber-600">+{xpEarned}</div>
+              <div className="text-2xl font-black text-amber-600 dark:text-amber-400">+{xpEarned}</div>
             </div>
 
             {courseCompleted && (
-              <div className="flex items-center justify-between p-4 bg-indigo-50 border border-indigo-100 rounded-2xl animate-fade-in delay-300">
+              <div className="flex items-center justify-between p-4 bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-100 dark:border-indigo-800/60 rounded-2xl animate-fade-in delay-300">
                 <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 bg-indigo-100 text-indigo-600 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-indigo-100 dark:bg-indigo-900/60 text-indigo-600 dark:text-indigo-400 rounded-full flex items-center justify-center">
                     <Trophy className="w-5 h-5" />
                   </div>
                   <div>
-                    <div className="text-sm font-bold text-indigo-800">Course Bonus</div>
-                    <div className="text-xs text-indigo-600 font-medium">For finishing the course</div>
+                    <div className="text-sm font-bold text-indigo-800 dark:text-indigo-300">Course Bonus</div>
+                    <div className="text-xs text-indigo-600 dark:text-indigo-400 font-medium">For finishing the course</div>
                   </div>
                 </div>
-                <div className="text-2xl font-black text-indigo-600">+{courseXP}</div>
+                <div className="text-2xl font-black text-indigo-600 dark:text-indigo-400">+{courseXP}</div>
               </div>
             )}
           </div>

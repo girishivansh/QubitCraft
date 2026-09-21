@@ -48,8 +48,8 @@ export default function Learn() {
       {/* Header & Search */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
         <div>
-          <h1 className="text-3xl md:text-4xl font-bold text-navy-900 mb-2">Learn Quantum Computing</h1>
-          <p className="text-slate-500">Build your quantum intuition, one concept at a time.</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-navy-900 dark:text-white mb-2">Learn Quantum Computing</h1>
+          <p className="text-slate-500 dark:text-slate-400">Build your quantum intuition, one concept at a time.</p>
         </div>
         <form onSubmit={handleSearchSubmit} className="relative w-full md:w-96">
           <input
@@ -57,28 +57,28 @@ export default function Learn() {
             placeholder="Search lessons, courses, algorithms..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full h-12 pl-12 pr-4 bg-gray-50 border border-gray-200 rounded-[12px] text-sm text-navy-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white transition-all shadow-sm"
+            className="w-full h-12 pl-12 pr-4 bg-gray-50 dark:bg-[#0d0e24] border border-gray-200 dark:border-slate-700 rounded-[12px] text-sm text-navy-900 dark:text-white placeholder:text-slate-400 dark:placeholder:text-slate-500 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:bg-white dark:focus:bg-[#070813] transition-all shadow-sm"
           />
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400 dark:text-slate-500" />
         </form>
       </div>
 
       {/* Search Results */}
       {searchResults !== null && (
         <div className="mb-16">
-          <h2 className="text-xl font-bold text-navy-900 mb-6">Search Results ({searchResults.length})</h2>
+          <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-6">Search Results ({searchResults.length})</h2>
           {searchResults.length > 0 ? (
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {searchResults.map((result) => (
-                <div key={`${result.type}-${result.id}`} className="bg-white rounded-card border border-gray-100 shadow-card p-6 flex flex-col hover:shadow-card-hover transition-all">
-                  <div className="flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider text-indigo-600">
+                <div key={`${result.type}-${result.id}`} className="bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800 shadow-card p-6 flex flex-col hover:shadow-card-hover transition-all">
+                  <div className="flex items-center gap-2 mb-3 text-xs font-semibold uppercase tracking-wider text-indigo-600 dark:text-indigo-400">
                     {result.type}
                   </div>
-                  <h3 className="text-lg font-bold text-navy-900 mb-2">{result.title}</h3>
-                  <p className="text-sm text-slate-600 mb-6 flex-1 line-clamp-2">{result.description}</p>
+                  <h3 className="text-lg font-bold text-navy-900 dark:text-white mb-2">{result.title}</h3>
+                  <p className="text-sm text-slate-600 dark:text-slate-300 mb-6 flex-1 line-clamp-2">{result.description}</p>
                   <button
                     onClick={() => navigate(result.href)}
-                    className="text-sm font-medium text-indigo-600 hover:text-indigo-700 w-fit"
+                    className="text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 w-fit"
                   >
                     View Details →
                   </button>
@@ -86,8 +86,8 @@ export default function Learn() {
               ))}
             </div>
           ) : (
-            <div className="bg-gray-50 rounded-card p-10 text-center border border-gray-100">
-              <p className="text-slate-500">No results found for "{searchQuery}". Try a different term.</p>
+            <div className="bg-gray-50 dark:bg-[#0d0e24]/60 rounded-card p-10 text-center border border-gray-100 dark:border-slate-800">
+              <p className="text-slate-500 dark:text-slate-400">No results found for "{searchQuery}". Try a different term.</p>
             </div>
           )}
         </div>
@@ -106,8 +106,8 @@ export default function Learn() {
           {/* Recommended For You */}
           {recommendations.length > 0 && (
             <div className="mb-16">
-              <h2 className="text-2xl font-bold text-navy-900 mb-2">Recommended For You</h2>
-              <p className="text-slate-500 mb-8">Personalized based on your goals and skill level.</p>
+              <h2 className="text-2xl font-bold text-navy-900 dark:text-white mb-2">Recommended For You</h2>
+              <p className="text-slate-500 dark:text-slate-400 mb-8">Personalized based on your goals and skill level.</p>
               <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
                 {recommendations.map((rec) => {
                   const path = LEARNING_PATHS.find(p => p.id === rec.pathId);
@@ -135,7 +135,7 @@ export default function Learn() {
 
           {/* All Learning Paths */}
           <div>
-            <h2 className="text-2xl font-bold text-navy-900 mb-8">All Learning Paths</h2>
+            <h2 className="text-2xl font-bold text-navy-900 dark:text-white mb-8">All Learning Paths</h2>
             <div className="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-6">
               {LEARNING_PATHS.map((path) => {
                 const completedInPath = path.courseIds.flatMap(cId => getCourseLessonIdsQuick(cId)).filter(id => progress.completedLessonIds.includes(id)).length;

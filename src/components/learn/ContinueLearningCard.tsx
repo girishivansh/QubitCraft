@@ -29,9 +29,9 @@ export const ContinueLearningCard: React.FC<ContinueLearningCardProps> = ({
   const hasProgress = continueLearning !== null;
 
   return (
-    <div className="bg-gradient-to-br from-indigo-50 to-blue-50 rounded-[20px] p-8 border border-indigo-100 shadow-sm relative overflow-hidden">
+    <div className="bg-gradient-to-br from-indigo-50 to-blue-50 dark:from-indigo-950/40 dark:to-blue-950/30 rounded-[20px] p-8 border border-indigo-100 dark:border-indigo-800/50 shadow-sm relative overflow-hidden transition-colors">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none">
+      <div className="absolute top-0 right-0 p-8 opacity-10 pointer-events-none text-indigo-600 dark:text-indigo-400">
         <svg width="200" height="200" viewBox="0 0 100 100" className="animate-spin-slow">
           <circle cx="50" cy="50" r="40" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="10 5" />
           <circle cx="50" cy="50" r="25" fill="none" stroke="currentColor" strokeWidth="1" strokeDasharray="5 5" />
@@ -42,21 +42,21 @@ export const ContinueLearningCard: React.FC<ContinueLearningCardProps> = ({
         {hasProgress ? (
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
             <div className="flex-1 max-w-2xl">
-              <div className="flex items-center gap-2 text-indigo-600 font-semibold text-sm mb-3">
+              <div className="flex items-center gap-2 text-indigo-600 dark:text-indigo-400 font-semibold text-sm mb-3">
                 <span>{continueLearning.pathTitle}</span>
-                <span className="text-indigo-300">•</span>
+                <span className="text-indigo-300 dark:text-indigo-600">•</span>
                 <span>{continueLearning.courseTitle}</span>
               </div>
-              <h2 className="text-2xl md:text-3xl font-bold text-navy-900 mb-4">
+              <h2 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white mb-4">
                 {continueLearning.lessonTitle}
               </h2>
-              <div className="flex items-center gap-4 text-slate-600 text-sm font-medium mb-6">
-                <span className="flex items-center gap-1.5 bg-white/60 px-2.5 py-1 rounded-md border border-indigo-100/50">
-                  <BookOpen className="w-4 h-4 text-indigo-500" />
+              <div className="flex items-center gap-4 text-slate-600 dark:text-slate-300 text-sm font-medium mb-6">
+                <span className="flex items-center gap-1.5 bg-white/60 dark:bg-[#131533]/80 px-2.5 py-1 rounded-md border border-indigo-100/50 dark:border-indigo-800/40">
+                  <BookOpen className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
                   Lesson {continueLearning.lessonNumber} of {continueLearning.totalLessons}
                 </span>
-                <span className="flex items-center gap-1.5 bg-white/60 px-2.5 py-1 rounded-md border border-indigo-100/50">
-                  <Clock className="w-4 h-4 text-indigo-500" />
+                <span className="flex items-center gap-1.5 bg-white/60 dark:bg-[#131533]/80 px-2.5 py-1 rounded-md border border-indigo-100/50 dark:border-indigo-800/40">
+                  <Clock className="w-4 h-4 text-indigo-500 dark:text-indigo-400" />
                   ~15 mins left
                 </span>
               </div>
@@ -78,15 +78,15 @@ export const ContinueLearningCard: React.FC<ContinueLearningCardProps> = ({
         ) : (
           <div className="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
             <div className="flex-1 max-w-2xl">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/60 border border-indigo-100 text-indigo-700 text-sm font-semibold rounded-full mb-4">
+              <div className="inline-flex items-center gap-1.5 px-3 py-1.5 bg-white/60 dark:bg-[#131533]/80 border border-indigo-100 dark:border-indigo-800/40 text-indigo-700 dark:text-indigo-300 text-sm font-semibold rounded-full mb-4">
                 <Star className="w-4 h-4 fill-current text-amber-400" /> New to Quantum Computing?
               </div>
-              <h2 className="text-3xl md:text-4xl font-extrabold text-navy-900 mb-4 tracking-tight">
+              <h2 className="text-3xl md:text-4xl font-extrabold text-navy-900 dark:text-white mb-4 tracking-tight">
                 Start Your Quantum Journey
               </h2>
-              <p className="text-slate-600 text-lg mb-0 max-w-lg leading-relaxed">
+              <p className="text-slate-600 dark:text-slate-300 text-lg mb-0 max-w-lg leading-relaxed">
                 Begin with our recommended path:{' '}
-                <strong className="text-indigo-700">{recommendedPathTitle || 'Quantum Computing Fundamentals'}</strong>. 
+                <strong className="text-indigo-700 dark:text-indigo-300">{recommendedPathTitle || 'Quantum Computing Fundamentals'}</strong>. 
                 Learn the basics from the ground up.
               </p>
             </div>

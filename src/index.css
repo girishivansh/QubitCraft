@@ -33,11 +33,15 @@ html.lenis body {
   }
 
   body {
-    @apply font-sans text-navy-900 bg-white;
+    @apply font-sans text-navy-900 bg-white dark:bg-[#070813] dark:text-slate-100 transition-colors duration-200;
   }
 
   *:focus-visible {
     @apply outline-2 outline-offset-2 outline-indigo-500;
+  }
+
+  .dark .text-navy-900 {
+    color: #f8fafc;
   }
 }
 
@@ -165,6 +169,7 @@ html.lenis body {
 /* ─── Custom scrollbar ─── */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -179,3 +184,26 @@ html.lenis body {
 ::-webkit-scrollbar-thumb:hover {
   background: #94a3b8;
 }
+
+.dark ::-webkit-scrollbar-track {
+  background: #0b0c1e;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #1e2238;
+  border-radius: 4px;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #2e3456;
+}
+
+/* Hide scrollbar utility */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+

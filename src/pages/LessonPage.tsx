@@ -125,28 +125,28 @@ export default function LessonPage() {
   return (
     <div className="min-h-[calc(100vh-72px)]">
       {/* Lesson Header */}
-      <div className="bg-white border-b border-gray-100 sticky top-16 lg:top-[72px] z-30">
+      <div className="bg-white dark:bg-[#0d0e24] border-b border-gray-100 dark:border-slate-800 sticky top-16 lg:top-[72px] z-30">
         <div className="max-w-container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <div className="flex items-center gap-3 min-w-0">
               <button
                 onClick={() => setSidebarOpen(!sidebarOpen)}
-                className="lg:hidden p-2 text-slate-500 hover:text-indigo-600 rounded-lg hover:bg-indigo-50 transition-colors"
+                className="lg:hidden p-2 text-slate-500 dark:text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-lg hover:bg-indigo-50 dark:hover:bg-indigo-950/40 transition-colors"
                 aria-label="Toggle lesson navigation"
               >
                 <Menu className="w-5 h-5" />
               </button>
-              <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500">
-                <span className="font-medium text-indigo-600">{path.title}</span>
+              <div className="hidden sm:flex items-center gap-2 text-xs text-slate-500 dark:text-slate-400">
+                <span className="font-medium text-indigo-600 dark:text-indigo-400">{path.title}</span>
                 <span>•</span>
                 <span>Lesson {lesson.order} of {courseLessons.length}</span>
               </div>
-              <h1 className="text-sm font-semibold text-navy-900 truncate sm:hidden">
+              <h1 className="text-sm font-semibold text-navy-900 dark:text-white truncate sm:hidden">
                 {lesson.title}
               </h1>
             </div>
             <div className="flex items-center gap-4">
-              <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500">
+              <div className="hidden sm:flex items-center gap-1.5 text-xs text-slate-500 dark:text-slate-400">
                 <Clock className="w-3.5 h-3.5" />
                 <span>{lesson.duration}</span>
               </div>
@@ -175,7 +175,7 @@ export default function LessonPage() {
         {/* Mobile sidebar */}
         {sidebarOpen && (
           <div className="fixed inset-0 z-40 lg:hidden">
-            <div className="absolute inset-0 bg-black/20" onClick={() => setSidebarOpen(false)} />
+            <div className="absolute inset-0 bg-black/40 backdrop-blur-xs" onClick={() => setSidebarOpen(false)} />
             <div className="absolute left-0 top-0 h-full w-80 max-w-[85vw]">
               <LessonSidebar
                 lessons={sidebarLessons}
@@ -199,15 +199,15 @@ export default function LessonPage() {
             </div>
 
             {/* Lesson Title */}
-            <h1 className="text-2xl md:text-3xl font-bold text-navy-900 mb-2">
+            <h1 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white mb-2">
               {lesson.title}
             </h1>
             <div className="flex items-center gap-4 mb-8">
-              <span className="flex items-center gap-1.5 text-sm text-slate-500">
+              <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                 <Clock className="w-4 h-4" />
                 {lesson.duration}
               </span>
-              <span className="flex items-center gap-1.5 text-sm text-slate-500">
+              <span className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400">
                 <Zap className="w-4 h-4 text-amber-500" />
                 {lesson.xp} XP
               </span>
@@ -215,14 +215,14 @@ export default function LessonPage() {
 
             {/* Learning Objectives */}
             {lesson.objectives.length > 0 && (
-              <div className="bg-indigo-50 rounded-[12px] border border-indigo-100 p-5 mb-10">
-                <h2 className="text-sm font-semibold text-indigo-900 mb-3 flex items-center gap-2">
+              <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-[12px] border border-indigo-100 dark:border-indigo-800/50 p-5 mb-10">
+                <h2 className="text-sm font-semibold text-indigo-900 dark:text-indigo-200 mb-3 flex items-center gap-2">
                   <BookOpen className="w-4 h-4" />
                   What you'll learn
                 </h2>
                 <ul className="space-y-1.5">
                   {lesson.objectives.map((obj, i) => (
-                    <li key={i} className="text-sm text-indigo-800 flex items-start gap-2">
+                    <li key={i} className="text-sm text-indigo-800 dark:text-indigo-300 flex items-start gap-2">
                       <span className="text-indigo-400 mt-1">•</span>
                       {obj}
                     </li>
@@ -240,7 +240,7 @@ export default function LessonPage() {
 
             {/* Lesson Complete Button */}
             {!isLessonCompleted && (
-              <div className="mt-12 pt-8 border-t border-gray-100">
+              <div className="mt-12 pt-8 border-t border-gray-100 dark:border-slate-800">
                 <button
                   onClick={handleCompleteLesson}
                   className="w-full sm:w-auto h-12 px-8 rounded-[12px] bg-gradient-to-r from-indigo-600 to-blue-500 text-sm font-semibold text-white hover:from-indigo-500 hover:to-blue-400 transition-all flex items-center justify-center gap-2"
@@ -252,11 +252,11 @@ export default function LessonPage() {
             )}
 
             {/* Navigation */}
-            <div className="mt-8 pt-6 border-t border-gray-100 flex items-center justify-between">
+            <div className="mt-8 pt-6 border-t border-gray-100 dark:border-slate-800 flex items-center justify-between">
               {prevLesson ? (
                 <Link
                   to={`/learn/course/${courseId}/lesson/${prevLesson.id}`}
-                  className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   <ChevronLeft className="w-4 h-4" />
                   {prevLesson.title}
@@ -267,7 +267,7 @@ export default function LessonPage() {
               {nextLesson && nextLessonState !== 'locked' ? (
                 <Link
                   to={`/learn/course/${courseId}/lesson/${nextLesson.id}`}
-                  className="flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-500 transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium text-indigo-600 dark:text-indigo-400 hover:text-indigo-500 transition-colors"
                 >
                   {nextLesson.title}
                   <ChevronRight className="w-4 h-4" />
@@ -275,7 +275,7 @@ export default function LessonPage() {
               ) : (
                 <Link
                   to={`/learn/course/${courseId}`}
-                  className="flex items-center gap-2 text-sm font-medium text-slate-600 hover:text-indigo-600 transition-colors"
+                  className="flex items-center gap-2 text-sm font-medium text-slate-600 dark:text-slate-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors"
                 >
                   Back to Course
                   <ChevronRight className="w-4 h-4" />
@@ -286,22 +286,22 @@ export default function LessonPage() {
         </div>
 
         {/* Right Context Panel (desktop) */}
-        <div className="hidden xl:block w-64 flex-shrink-0 p-6 border-l border-gray-100">
+        <div className="hidden xl:block w-64 flex-shrink-0 p-6 border-l border-gray-100 dark:border-slate-800">
           <div className="sticky top-32 space-y-6">
             <div>
               <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Progress</h3>
               <div className="space-y-3">
                 <div className="flex items-center justify-between text-sm">
-                  <span className="text-slate-600">Course</span>
-                  <span className="font-medium text-navy-900">{courseProgress}%</span>
+                  <span className="text-slate-600 dark:text-slate-400">Course</span>
+                  <span className="font-medium text-navy-900 dark:text-white">{courseProgress}%</span>
                 </div>
                 <ProgressBar value={courseProgress} size="sm" />
-                <p className="text-xs text-slate-500">{completedInCourse} of {courseLessons.length} lessons</p>
+                <p className="text-xs text-slate-500 dark:text-slate-400">{completedInCourse} of {courseLessons.length} lessons</p>
               </div>
             </div>
             <div>
               <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">This Lesson</h3>
-              <div className="space-y-2 text-sm text-slate-600">
+              <div className="space-y-2 text-sm text-slate-600 dark:text-slate-300">
                 <div className="flex items-center gap-2">
                   <Clock className="w-3.5 h-3.5 text-slate-400" />
                   {lesson.duration}
@@ -317,7 +317,7 @@ export default function LessonPage() {
                 <h3 className="text-xs font-semibold text-slate-400 uppercase tracking-wider mb-3">Objectives</h3>
                 <ul className="space-y-1.5">
                   {lesson.objectives.map((obj, i) => (
-                    <li key={i} className="text-xs text-slate-600 flex items-start gap-1.5">
+                    <li key={i} className="text-xs text-slate-600 dark:text-slate-300 flex items-start gap-1.5">
                       <span className="text-indigo-400 mt-0.5">•</span>
                       {obj}
                     </li>

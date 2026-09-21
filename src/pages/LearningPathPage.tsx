@@ -69,9 +69,9 @@ export default function LearningPathPage() {
   };
 
   const difficultyColors = {
-    beginner: 'bg-green-50 text-green-700 border-green-200',
-    intermediate: 'bg-blue-50 text-blue-700 border-blue-200',
-    advanced: 'bg-purple-50 text-purple-700 border-purple-200',
+    beginner: 'bg-green-50 dark:bg-green-950/60 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800/60',
+    intermediate: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
+    advanced: 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/60',
   };
 
   return (
@@ -81,9 +81,9 @@ export default function LearningPathPage() {
       </div>
 
       {/* Path Header */}
-      <div className="bg-white rounded-card border border-gray-100 shadow-card p-6 md:p-10 mb-10">
+      <div className="bg-white dark:bg-[#0d0e24] rounded-card border border-gray-100 dark:border-slate-800/80 shadow-card p-6 md:p-10 mb-10 transition-colors">
         <div className="flex flex-col md:flex-row gap-6 md:items-start">
-          <div className="w-16 h-16 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center flex-shrink-0">
+          <div className="w-16 h-16 rounded-2xl bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 flex items-center justify-center flex-shrink-0">
             {getIcon(path.icon)}
           </div>
           <div className="flex-1">
@@ -92,10 +92,10 @@ export default function LearningPathPage() {
                 {path.difficulty}
               </span>
             </div>
-            <h1 className="text-2xl md:text-3xl font-bold text-navy-900 mb-3">{path.title}</h1>
-            <p className="text-slate-600 mb-6">{path.description}</p>
+            <h1 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white mb-3">{path.title}</h1>
+            <p className="text-slate-600 dark:text-slate-300 mb-6">{path.description}</p>
             
-            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 mb-8">
+            <div className="flex flex-wrap items-center gap-4 text-sm text-slate-500 dark:text-slate-400 mb-8">
               <span className="flex items-center gap-1.5"><BookOpen className="w-4 h-4" /> {path.lessonCount} Lessons</span>
               <span className="flex items-center gap-1.5"><Clock className="w-4 h-4" /> {path.estimatedDuration}</span>
               <span className="flex items-center gap-1.5"><Zap className="w-4 h-4 text-amber-500" /> {path.totalXP} XP</span>
@@ -114,12 +114,12 @@ export default function LearningPathPage() {
 
       {/* Objectives */}
       <div className="mb-12">
-        <h2 className="text-xl font-bold text-navy-900 mb-6">What You'll Learn</h2>
-        <div className="bg-indigo-50 rounded-[20px] p-6 border border-indigo-100">
+        <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-6">What You'll Learn</h2>
+        <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-[20px] p-6 border border-indigo-100 dark:border-indigo-800/50 transition-colors">
           <ul className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
             {path.objectives.map((obj, i) => (
-              <li key={i} className="flex items-start gap-3 text-indigo-900 text-sm font-medium">
-                <span className="text-indigo-500 mt-1 flex-shrink-0">•</span>
+              <li key={i} className="flex items-start gap-3 text-indigo-900 dark:text-indigo-200 text-sm font-medium">
+                <span className="text-indigo-500 dark:text-indigo-400 mt-1 flex-shrink-0">•</span>
                 {obj}
               </li>
             ))}
@@ -129,7 +129,7 @@ export default function LearningPathPage() {
 
       {/* Roadmap */}
       <div>
-        <h2 className="text-xl font-bold text-navy-900 mb-8">Learning Roadmap</h2>
+        <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-8">Learning Roadmap</h2>
         <LearningRoadmap lessons={roadmapLessons} courseId={course.id} />
       </div>
     </div>

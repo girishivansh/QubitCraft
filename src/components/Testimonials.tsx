@@ -6,7 +6,7 @@ export function Testimonials() {
   return (
     <section className="scroll-trigger max-w-container mx-auto px-4 md:px-6 lg:px-8 py-16 md:py-20">
       <div className="flex items-center justify-between mb-10 stagger-child">
-        <h2 className="text-2xl md:text-3xl font-bold text-navy-900">
+        <h2 className="text-2xl md:text-3xl font-bold text-navy-900 dark:text-white">
           What Our Learners Say
         </h2>
         <Link to="/testimonials" className="text-sm text-indigo-600 hover:text-indigo-700 hidden sm:block">

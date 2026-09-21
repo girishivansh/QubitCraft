@@ -61,9 +61,9 @@ export default function CoursePage() {
   ];
 
   const difficultyColors = {
-    beginner: 'bg-green-50 text-green-700 border-green-200',
-    intermediate: 'bg-blue-50 text-blue-700 border-blue-200',
-    advanced: 'bg-purple-50 text-purple-700 border-purple-200',
+    beginner: 'bg-green-50 dark:bg-green-950/60 text-green-700 dark:text-green-300 border-green-200 dark:border-green-800/60',
+    intermediate: 'bg-blue-50 dark:bg-blue-950/60 text-blue-700 dark:text-blue-300 border-blue-200 dark:border-blue-800/60',
+    advanced: 'bg-purple-50 dark:bg-purple-950/60 text-purple-700 dark:text-purple-300 border-purple-200 dark:border-purple-800/60',
   };
 
   return (
@@ -79,12 +79,12 @@ export default function CoursePage() {
             {course.difficulty}
           </span>
         </div>
-        <h1 className="text-3xl md:text-4xl font-bold text-navy-900 mb-4">{course.title}</h1>
-        <p className="text-lg text-slate-600 mb-8">{course.description}</p>
+        <h1 className="text-3xl md:text-4xl font-bold text-navy-900 dark:text-white mb-4">{course.title}</h1>
+        <p className="text-lg text-slate-600 dark:text-slate-300 mb-8">{course.description}</p>
         
-        <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600 mb-8 p-4 bg-gray-50 rounded-xl">
-          <span className="flex items-center gap-2"><BookOpen className="w-5 h-5 text-indigo-500" /> {course.lessonIds.length} Lessons</span>
-          <span className="flex items-center gap-2"><Clock className="w-5 h-5 text-indigo-500" /> {course.estimatedDuration}</span>
+        <div className="flex flex-wrap items-center gap-6 text-sm text-slate-600 dark:text-slate-300 mb-8 p-4 bg-gray-50 dark:bg-[#0d0e24] border border-gray-100 dark:border-slate-800/80 rounded-xl transition-colors">
+          <span className="flex items-center gap-2"><BookOpen className="w-5 h-5 text-indigo-500 dark:text-indigo-400" /> {course.lessonIds.length} Lessons</span>
+          <span className="flex items-center gap-2"><Clock className="w-5 h-5 text-indigo-500 dark:text-indigo-400" /> {course.estimatedDuration}</span>
           <span className="flex items-center gap-2"><Zap className="w-5 h-5 text-amber-500" /> {course.totalXP} XP</span>
         </div>
 
@@ -100,13 +100,13 @@ export default function CoursePage() {
       {/* Prerequisites */}
       {course.prerequisites.length > 0 && (
         <div className="mb-12">
-          <h2 className="text-xl font-bold text-navy-900 mb-4">Prerequisites</h2>
-          <div className="bg-white border border-gray-200 rounded-xl p-5">
-            <div className="flex items-center gap-3 mb-2 text-indigo-700 font-medium">
+          <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-4">Prerequisites</h2>
+          <div className="bg-white dark:bg-[#0d0e24] border border-gray-200 dark:border-slate-800 rounded-xl p-5 transition-colors">
+            <div className="flex items-center gap-3 mb-2 text-indigo-700 dark:text-indigo-400 font-medium">
               <GraduationCap className="w-5 h-5" />
               Recommended prior knowledge:
             </div>
-            <ul className="space-y-2 ml-8 list-disc text-slate-600 text-sm">
+            <ul className="space-y-2 ml-8 list-disc text-slate-600 dark:text-slate-300 text-sm">
               {course.prerequisites.map((prereq, i) => (
                 <li key={i}>{prereq}</li>
               ))}
@@ -117,12 +117,12 @@ export default function CoursePage() {
 
       {/* Objectives */}
       <div className="mb-12">
-        <h2 className="text-xl font-bold text-navy-900 mb-6">Course Objectives</h2>
-        <div className="bg-indigo-50 rounded-[20px] p-6 border border-indigo-100">
+        <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-6">Course Objectives</h2>
+        <div className="bg-indigo-50 dark:bg-indigo-950/40 rounded-[20px] p-6 border border-indigo-100 dark:border-indigo-800/50 transition-colors">
           <ul className="grid sm:grid-cols-2 gap-y-4 gap-x-8">
             {course.objectives.map((obj, i) => (
-              <li key={i} className="flex items-start gap-3 text-indigo-900 text-sm font-medium">
-                <span className="text-indigo-500 mt-1 flex-shrink-0">•</span>
+              <li key={i} className="flex items-start gap-3 text-indigo-900 dark:text-indigo-200 text-sm font-medium">
+                <span className="text-indigo-500 dark:text-indigo-400 mt-1 flex-shrink-0">•</span>
                 {obj}
               </li>
             ))}
@@ -132,7 +132,7 @@ export default function CoursePage() {
 
       {/* Curriculum */}
       <div>
-        <h2 className="text-xl font-bold text-navy-900 mb-8">Course Curriculum</h2>
+        <h2 className="text-xl font-bold text-navy-900 dark:text-white mb-8">Course Curriculum</h2>
         <LearningRoadmap lessons={roadmapLessons} courseId={course.id} />
       </div>
     </div>

@@ -19,14 +19,14 @@ export const TextBlock: React.FC<TextBlockProps> = ({ block }) => {
     // *italic*
     parsed = parsed.replace(/\*(.*?)\*/g, '<em>$1</em>');
     // `code`
-    parsed = parsed.replace(/`(.*?)`/g, '<code class="bg-gray-100 text-pink-600 px-1.5 py-0.5 rounded text-sm font-mono">$1</code>');
+    parsed = parsed.replace(/`(.*?)`/g, '<code class="bg-gray-100 dark:bg-slate-800 text-pink-600 dark:text-pink-400 px-1.5 py-0.5 rounded text-sm font-mono border border-transparent dark:border-slate-700">$1</code>');
 
     return { __html: parsed };
   };
 
   return (
     <p 
-      className="text-base text-slate-700 leading-relaxed mb-4"
+      className="text-base text-slate-700 dark:text-slate-300 leading-relaxed mb-4"
       dangerouslySetInnerHTML={parseText(block.content)}
     />
   );
