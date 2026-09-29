@@ -32,7 +32,7 @@ export interface TutorResponse {
   suggestions: string[];
 }
 
-const API_BASE_URL = (import.meta.env.VITE_API_URL || 'http://localhost:8000').replace(/\/+$/, '');
+import { API_BASE_URL } from './apiClient';
 
 function getSmartFallback(message: string, context?: TutorContext): TutorResponse {
   const query = message.toLowerCase();
