@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
-import { NavLink, Link, useNavigate } from 'react-router-dom';
+import { createPortal } from 'react-dom';
+import { NavLink, Link, useNavigate, useLocation } from 'react-router-dom';
 import { Menu, X, Sun, Moon, LogOut } from 'lucide-react';
 import { NAV_LINKS, NAV_LINKS_BY_ROLE } from '../lib/constants';
 import { useAuth } from '../auth/AuthProvider';
@@ -17,6 +18,7 @@ export const Navbar = () => {
   const { isDark, toggleTheme } = useTheme();
   const { user, isAuthenticated, logout } = useAuth();
   const navigate = useNavigate();
+  const location = useLocation();
 
   // Determine nav links based on auth state and role
   const navLinks = isAuthenticated && user
@@ -31,10 +33,41 @@ export const Navbar = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const handleLogout = () => {
-    logout();
+  // Close mobile drawer on route navigation
+  useEffect(() => {
     setMobileMenuOpen(false);
-    navigate('/');
+    setProfileMenuOpen(false);
+  }, [location.pathname]);
+
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [mobileMenuOpen]);
+
+  // Close menus on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        setMobileMenuOpen(false);
+        setProfileMenuOpen(false);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, []);
+
+  const handleLogout = () => {
+    setProfileMenuOpen(false);
+    setMobileMenuOpen(false);
+    logout();
+    navigate('/login');
   };
 
   return (
@@ -89,8 +122,10 @@ export const Navbar = () => {
             {isAuthenticated && user ? (
               <div className="relative">
                 <button
+                  type="button"
+                  data-profile-trigger
                   onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                  className="flex items-center gap-2 focus:outline-none"
+                  className="flex items-center gap-2 focus:outline-none cursor-pointer"
                   aria-label="Open profile menu"
                 >
                   <AvatarInitials name={user.name} size="sm" />
@@ -111,8 +146,9 @@ export const Navbar = () => {
 
           <div className="lg:hidden flex items-center gap-2">
             <button 
+              type="button"
               onClick={toggleTheme}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
+              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
               aria-label="Toggle dark mode"
             >
               {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
@@ -120,127 +156,154 @@ export const Navbar = () => {
 
             {isAuthenticated && user && (
               <button
-                onClick={() => setProfileMenuOpen(!profileMenuOpen)}
-                className="relative"
-                aria-label="Open profile menu"
+                type="button"
+                onClick={() => setMobileMenuOpen(true)}
+                className="flex items-center focus:outline-none cursor-pointer"
+                aria-label="Open user menu"
               >
                 <AvatarInitials name={user.name} size="sm" />
-                <ProfileMenu
-                  user={{ name: user.name, email: user.email }}
-                  onLogout={handleLogout}
-                  onClose={() => setProfileMenuOpen(false)}
-                  isOpen={profileMenuOpen}
-                />
               </button>
             )}
             <button 
-              onClick={() => setMobileMenuOpen(true)}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600"
+              type="button"
+              onClick={() => setMobileMenuOpen(prev => !prev)}
+              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 active:scale-95 transition-all cursor-pointer"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
             >
-              <Menu className="w-6 h-6" />
+              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile menu overlay */}
-      <div 
-        className={`fixed inset-0 bg-black/40 backdrop-blur-xs z-50 lg:hidden transition-opacity ${
-          mobileMenuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-        }`}
-        onClick={() => setMobileMenuOpen(false)}
-      />
-      {/* Mobile menu drawer */}
-      <div 
-        className={`fixed top-0 right-0 h-full w-3/4 max-w-sm bg-white dark:bg-[#0d0e24] text-slate-900 dark:text-slate-100 z-50 shadow-2xl transition-transform duration-300 ease-in-out lg:hidden flex flex-col border-l border-gray-100 dark:border-slate-800 ${
-          mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
-        }`}
-      >
-        <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800 h-16">
-          <div className="flex items-center gap-2">
-            <span className="font-bold text-navy-900 dark:text-white text-lg">Menu</span>
-          </div>
-          <div className="flex items-center gap-1">
-            <button 
-              onClick={toggleTheme}
-              className="p-2 text-slate-500 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-              aria-label="Toggle theme"
-            >
-              {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
-            </button>
-            <button 
-              onClick={() => setMobileMenuOpen(false)}
-              className="p-2 text-slate-500 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              <X className="w-6 h-6" />
-            </button>
-          </div>
-        </div>
+      {/* Mobile menu portal to document.body to avoid header backdrop-filter containing-block trap */}
+      {typeof document !== 'undefined' && createPortal(
+        <div className="lg:hidden">
+          {/* Backdrop overlay */}
+          <div 
+            className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] transition-opacity duration-300 ${
+              mobileMenuOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
+            }`}
+            onClick={() => setMobileMenuOpen(false)}
+            aria-hidden="true"
+          />
 
-        {/* Authenticated user info in mobile menu */}
-        {isAuthenticated && user && (
-          <div className="px-4 py-4 border-b border-gray-100 dark:border-slate-800">
-            <div className="flex items-center gap-3">
-              <AvatarInitials name={user.name} size="sm" />
-              <div className="min-w-0">
-                <p className="text-sm font-semibold text-navy-900 dark:text-white truncate">{user.name}</p>
-                <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+          {/* Drawer container */}
+          <div 
+            data-lenis-prevent
+            className={`fixed top-0 right-0 h-screen h-[100dvh] w-[82%] max-w-sm bg-white dark:bg-[#0d0e24] text-slate-900 dark:text-slate-100 z-[1000] shadow-2xl transition-transform duration-300 ease-out flex flex-col border-l border-gray-100 dark:border-slate-800 ${
+              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            }`}
+            role="dialog"
+            aria-modal="true"
+            aria-label="Mobile Navigation"
+          >
+            <div className="flex items-center justify-between p-4 border-b border-gray-100 dark:border-slate-800 h-16 flex-shrink-0">
+              <span className="font-bold text-navy-900 dark:text-white text-lg">Menu</span>
+              <div className="flex items-center gap-1">
+                <button 
+                  type="button"
+                  onClick={toggleTheme}
+                  className="p-2 text-slate-500 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                  aria-label="Toggle theme"
+                >
+                  {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
+                </button>
+                <button 
+                  type="button"
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="p-2 text-slate-500 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                  aria-label="Close menu"
+                >
+                  <X className="w-6 h-6" />
+                </button>
               </div>
             </div>
-          </div>
-        )}
-        
-        <div className="flex-1 overflow-y-auto py-6 px-4 flex flex-col gap-3">
-          {navLinks.map((link) => (
-            <NavLink
-              key={link.path}
-              to={link.path}
-              onClick={() => setMobileMenuOpen(false)}
-              className={({ isActive }) => 
-                `block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                  isActive 
-                    ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold' 
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-indigo-600'
-                }`
-              }
-            >
-              {link.label}
-            </NavLink>
-          ))}
 
-          {isAuthenticated && (
-            <NavLink
-              to="/profile"
-              onClick={() => setMobileMenuOpen(false)}
-              className={({ isActive }) => 
-                `block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
-                  isActive 
-                    ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold' 
-                    : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-indigo-600'
-                }`
-              }
-            >
-              Profile
-            </NavLink>
-          )}
-        </div>
-        
-        <div className="p-4 border-t border-gray-100 dark:border-slate-800">
-          {isAuthenticated ? (
-            <button
-              onClick={handleLogout}
-              className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-[12px] text-sm font-medium text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900/50 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors"
-            >
-              <LogOut className="w-4 h-4" />
-              Logout
-            </button>
-          ) : (
-            <Button href="/signup" variant="primary" className="w-full" onClick={() => setMobileMenuOpen(false)}>
-              Get Started
-            </Button>
-          )}
-        </div>
-      </div>
+            {/* Authenticated user info in mobile menu */}
+            {isAuthenticated && user && (
+              <div className="px-4 py-4 border-b border-gray-100 dark:border-slate-800 flex-shrink-0 bg-slate-50/50 dark:bg-slate-900/30">
+                <div className="flex items-center gap-3">
+                  <AvatarInitials name={user.name} size="sm" />
+                  <div className="min-w-0">
+                    <p className="text-sm font-semibold text-navy-900 dark:text-white truncate">{user.name}</p>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 truncate">{user.email}</p>
+                  </div>
+                </div>
+              </div>
+            )}
+            
+            <div className="flex-1 overflow-y-auto py-4 px-4 flex flex-col gap-2">
+              {navLinks.map((link) => (
+                <NavLink
+                  key={link.path}
+                  to={link.path}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className={({ isActive }) => 
+                    `block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                      isActive 
+                        ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold' 
+                        : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-indigo-600'
+                    }`
+                  }
+                >
+                  {link.label}
+                </NavLink>
+              ))}
+
+              {isAuthenticated && (
+                <>
+                  <NavLink
+                    to="/profile"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) => 
+                      `block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                        isActive 
+                          ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold' 
+                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-indigo-600'
+                      }`
+                    }
+                  >
+                    Profile
+                  </NavLink>
+                  <NavLink
+                    to="/settings"
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={({ isActive }) => 
+                      `block px-4 py-3 rounded-xl text-base font-medium transition-colors ${
+                        isActive 
+                          ? 'bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-semibold' 
+                          : 'text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800/60 hover:text-indigo-600'
+                      }`
+                    }
+                  >
+                    Settings
+                  </NavLink>
+                </>
+              )}
+            </div>
+            
+            <div className="p-4 border-t border-gray-100 dark:border-slate-800 flex-shrink-0 bg-white dark:bg-[#0d0e24]">
+              {isAuthenticated ? (
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-[12px] text-sm font-medium text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900/50 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
+                >
+                  <LogOut className="w-4 h-4" />
+                  Logout
+                </button>
+              ) : (
+                <Button href="/signup" variant="primary" className="w-full" onClick={() => setMobileMenuOpen(false)}>
+                  Get Started
+                </Button>
+              )}
+            </div>
+          </div>
+        </div>,
+        document.body
+      )}
     </header>
   );
 };

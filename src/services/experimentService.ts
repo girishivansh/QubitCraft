@@ -1,5 +1,6 @@
 import { Experiment, CircuitState } from '../types/circuit';
 import { v4 as uuidv4 } from 'uuid';
+import { apiFetch } from './apiClient';
 
 const STORAGE_KEY = 'qubitcraft_experiments';
 
@@ -25,6 +26,17 @@ export const experimentService = {
     };
     experiments.push(newExperiment);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(experiments));
+
+    // Asynchronously persist to MongoDB backend
+    apiFetch<Experiment>('/api/experiments', {
+      method: 'POST',
+      body: JSON.stringify({
+        name: newExperiment.name,
+        description: newExperiment.description,
+        circuit: newExperiment.circuit,
+      }),
+    }).catch(err => console.warn('Failed to sync experiment to MongoDB:', err));
+
     return newExperiment;
   },
 
@@ -40,11 +52,35 @@ export const experimentService = {
     };
     
     localStorage.setItem(STORAGE_KEY, JSON.stringify(experiments));
+
+    // Asynchronously update in MongoDB backend
+    apiFetch<Experiment>(`/api/experiments/${id}`, {
+      method: 'PUT',
+      body: JSON.stringify(updates),
+    }).catch(err => console.warn('Failed to update experiment in MongoDB:', err));
+
     return experiments[index];
   },
 
   deleteExperiment(id: string): void {
     const experiments = this.getExperiments().filter(e => e.id !== id);
     localStorage.setItem(STORAGE_KEY, JSON.stringify(experiments));
+
+    // Asynchronously delete from MongoDB backend
+    apiFetch(`/api/experiments/${id}`, {
+      method: 'DELETE',
+    }).catch(err => console.warn('Failed to delete experiment from MongoDB:', err));
+  },
+
+  /**
+   * Fetches latest experiments from MongoDB backend and syncs local storage.
+   */
+  async syncExperiments(): Promise<Experiment[]> {
+    const { data } = await apiFetch<Experiment[]>('/api/experiments');
+    if (data && Array.isArray(data)) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
+      return data;
+    }
+    return this.getExperiments();
   }
 };

@@ -5,3 +5,6 @@ qiskit-aer
 pydantic
 groq
 python-dotenv
+motor
+pymongo
+bcrypt

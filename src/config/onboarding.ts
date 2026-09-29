@@ -1,4 +1,19 @@
-import { GraduationCap, BookOpen, Code, MonitorPlay, Sparkles } from 'lucide-react';
+import { 
+  GraduationCap, 
+  BookOpen, 
+  Code, 
+  MonitorPlay, 
+  Sparkles,
+  Atom,
+  Cpu,
+  Binary,
+  Compass,
+  Eye,
+  Layers,
+  Wrench,
+  Trophy,
+  Bot
+} from 'lucide-react';
 import { LearnerType, SkillLevel, LearningGoal, LearningPreference } from '../types/learning';
 
 export const LEARNER_TYPES = [
@@ -25,21 +40,21 @@ export const SKILL_LEVEL_OPTIONS: SkillLevelOption[] = [
 ];
 
 export const LEARNING_GOALS = [
-  { id: 'understand-quantum' as LearningGoal, label: 'Understand quantum mechanics' },
-  { id: 'build-circuits' as LearningGoal, label: 'Build quantum circuits' },
-  { id: 'learn-algorithms' as LearningGoal, label: 'Learn quantum algorithms' },
-  { id: 'prepare-exams' as LearningGoal, label: 'Prepare for exams or interviews' },
-  { id: 'practice-programming' as LearningGoal, label: 'Practice quantum programming' },
-  { id: 'explore-research' as LearningGoal, label: 'Explore latest research' },
-  { id: 'teach-quantum' as LearningGoal, label: 'Teach quantum computing' },
+  { id: 'understand-quantum' as LearningGoal, label: 'Understand quantum mechanics', icon: Atom },
+  { id: 'build-circuits' as LearningGoal, label: 'Build quantum circuits', icon: Cpu },
+  { id: 'learn-algorithms' as LearningGoal, label: 'Learn quantum algorithms', icon: Binary },
+  { id: 'prepare-exams' as LearningGoal, label: 'Prepare for exams or interviews', icon: GraduationCap },
+  { id: 'practice-programming' as LearningGoal, label: 'Practice quantum programming', icon: Code },
+  { id: 'explore-research' as LearningGoal, label: 'Explore latest research', icon: Compass },
+  { id: 'teach-quantum' as LearningGoal, label: 'Teach quantum computing', icon: BookOpen },
 ];
 
 export const LEARNING_PREFERENCES = [
-  { id: 'interactive-visualizations' as LearningPreference, label: 'Interactive visualisations' },
-  { id: 'step-by-step-lessons' as LearningPreference, label: 'Step-by-step lessons' },
-  { id: 'hands-on-circuits' as LearningPreference, label: 'Hands-on circuit building' },
-  { id: 'challenges-quizzes' as LearningPreference, label: 'Challenges and quizzes' },
-  { id: 'ai-explanations' as LearningPreference, label: 'AI-assisted explanations' },
+  { id: 'interactive-visualizations' as LearningPreference, label: 'Interactive visualisations', icon: Eye },
+  { id: 'step-by-step-lessons' as LearningPreference, label: 'Step-by-step lessons', icon: Layers },
+  { id: 'hands-on-circuits' as LearningPreference, label: 'Hands-on circuit building', icon: Wrench },
+  { id: 'challenges-quizzes' as LearningPreference, label: 'Challenges and quizzes', icon: Trophy },
+  { id: 'ai-explanations' as LearningPreference, label: 'AI-assisted explanations', icon: Bot },
 ];
 
 export const RECOMMENDED_PATHS: Record<SkillLevel, { pathName: string; firstLesson: string; description: string }> = {

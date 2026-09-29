@@ -45,6 +45,16 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return result;
   };
 
+  const loginWithGoogle = async (profile?: { name: string; email: string; avatar?: string }): Promise<AuthResult> => {
+    setIsLoading(true);
+    const result = await authService.loginWithGoogle(profile);
+    if (result.success && result.user) {
+      setUser(result.user);
+    }
+    setIsLoading(false);
+    return result;
+  };
+
   const logout = () => {
     authService.logout();
     setUser(null);
@@ -78,6 +88,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     isLoading,
     login,
     signup,
+    loginWithGoogle,
     logout,
     updateProfile,
     updateOnboarding,

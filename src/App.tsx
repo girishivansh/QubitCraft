@@ -23,6 +23,7 @@ import Signup from './pages/Signup';
 import ForgotPassword from './pages/ForgotPassword';
 import Onboarding from './pages/Onboarding';
 import Profile from './pages/Profile';
+import Settings from './pages/Settings';
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
@@ -125,6 +126,9 @@ export default function App() {
       } />
       <Route path="/profile" element={
         <AppLayout><ProtectedRoute><Profile /></ProtectedRoute></AppLayout>
+      } />
+      <Route path="/settings" element={
+        <AppLayout><ProtectedRoute><Settings /></ProtectedRoute></AppLayout>
       } />
     </Routes>
   );

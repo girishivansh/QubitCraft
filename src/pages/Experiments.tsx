@@ -9,6 +9,9 @@ export function Experiments() {
 
   useEffect(() => {
     setExperiments(experimentService.getExperiments());
+    experimentService.syncExperiments().then(synced => {
+      setExperiments(synced);
+    }).catch(() => {});
   }, []);
 
   const handleDelete = (id: string) => {

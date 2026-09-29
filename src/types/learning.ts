@@ -18,6 +18,7 @@ export type LearningPreference =
 export interface OnboardingData {
   learnerType: LearnerType | null;
   skillLevel: SkillLevel | null;
+  selectedSkillKey?: string | null;
   goals: LearningGoal[];
   learningPreferences: LearningPreference[];
 }

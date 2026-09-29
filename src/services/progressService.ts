@@ -1,5 +1,6 @@
 import { LearningProgressData, DEFAULT_LEARNING_PROGRESS, LessonState, Achievement } from '../types/curriculum';
 import { XP } from '../config/xp';
+import { apiFetch } from './apiClient';
 
 const getProgressKey = (userId: string) => `qubitcraft_progress_${userId}`;
 
@@ -16,6 +17,24 @@ export const progressService = {
 
   saveProgress(userId: string, progress: LearningProgressData): void {
     localStorage.setItem(getProgressKey(userId), JSON.stringify(progress));
+
+    // Asynchronously persist progress to MongoDB backend
+    if (userId) {
+      apiFetch<LearningProgressData>(`/api/progress/${userId}`, {
+        method: 'POST',
+        body: JSON.stringify(progress),
+      }).catch(err => console.warn('Failed to sync progress to MongoDB:', err));
+    }
+  },
+
+  async syncProgress(userId: string): Promise<LearningProgressData> {
+    if (!userId) return this.getProgress(userId);
+    const { data } = await apiFetch<LearningProgressData>(`/api/progress/${userId}`);
+    if (data) {
+      localStorage.setItem(getProgressKey(userId), JSON.stringify(data));
+      return data;
+    }
+    return this.getProgress(userId);
   },
 
   completeLesson(
