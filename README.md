@@ -1,32 +1,94 @@
-# React + TypeScript + Vite
+# ⚛️ QubitCraft
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+### AI-Powered Interactive Quantum Computing Learning Platform
 
-Currently, two official plugins are available:
+<p align="center">
+  <strong>See Quantum. Build Quantum. Understand Quantum.</strong>
+</p>
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+<p align="center">
+  An interactive learning and experimentation platform designed to make
+  quantum computing accessible, visual, practical, and engaging.
+</p>
 
-## React Compiler
+---
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 🚀 About QubitCraft
 
-## Expanding the Oxlint configuration
+**QubitCraft** is an AI-powered interactive quantum computing learning platform
+developed for the **Smart India Hackathon 2026**.
 
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
+Quantum computing is powerful but difficult to learn because many of its core
+concepts are abstract, mathematical, and difficult to visualize.
 
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
-```
+QubitCraft addresses this challenge by combining:
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+- 🧠 Interactive quantum learning
+- ⚛️ Quantum circuit building
+- 🔬 Real-time quantum simulation
+- 🌐 3D quantum-state visualization
+- 🤖 AI-powered quantum tutoring
+- 📚 Step-by-step algorithm exploration
+- 📊 Visual simulation results
+- 💻 Runnable Qiskit implementations
+
+The goal is to transform quantum computing from something learners only
+**read about** into something they can **see, build, simulate, and understand**.
+
+---
+
+# 🏆 Smart India Hackathon 2026
+
+### Team SRIJAN
+
+| Detail | Information |
+|---|---|
+| **Event** | Smart India Hackathon 2026 |
+| **Problem Statement ID** | SIH26140 |
+| **Team ID** | 26P08 |
+| **Team Name** | SRIJAN |
+| **Category** | Software |
+| **Theme** | Smart Education |
+| **Project** | QubitCraft |
+
+QubitCraft is developed as a solution for the SIH 2026 problem statement
+focused on creating an interactive and intelligent quantum computing learning
+experience.
+
+---
+
+# 🎯 Problem
+
+Quantum computing education currently faces several challenges:
+
+- Abstract quantum concepts are difficult for beginners to visualize.
+- Mathematical notation can create a steep learning curve.
+- Students often lack access to practical quantum hardware.
+- Learning resources, simulators, and coding environments are usually
+  separated across different platforms.
+- Beginners may struggle to understand what happens inside a quantum circuit.
+- Traditional learning approaches provide limited interactive experimentation.
+
+---
+
+# 💡 Our Solution
+
+QubitCraft brings learning, experimentation, simulation, visualization, and
+AI assistance together in a single platform.
+
+### Core Experience
+
+```text
+        LEARN
+          ↓
+      UNDERSTAND
+          ↓
+        BUILD
+          ↓
+      SIMULATE
+          ↓
+     VISUALIZE
+          ↓
+      GET INSIGHTS
+          ↓
+      LEARN BETTER
