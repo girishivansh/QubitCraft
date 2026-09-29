@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { X, ExternalLink, Key, CheckCircle, ArrowRight } from 'lucide-react';
-import { setRuntimeGoogleClientId } from '../../auth/googleAuth';
+import { setRuntimeGoogleClientId, getGoogleClientId } from '../../auth/googleAuth';
 
 interface GoogleOAuthSetupModalProps {
   isOpen: boolean;
@@ -15,7 +15,7 @@ export default function GoogleOAuthSetupModal({
   onClientConfigured,
   onQuickTestLogin,
 }: GoogleOAuthSetupModalProps) {
-  const [clientIdInput, setClientIdInput] = useState('');
+  const [clientIdInput, setClientIdInput] = useState(() => getGoogleClientId());
   const [error, setError] = useState('');
 
   if (!isOpen) return null;
