@@ -144,11 +144,11 @@ export const Navbar = () => {
             )}
           </div>
 
-          <div className="lg:hidden flex items-center gap-2">
+          <div className="lg:hidden flex items-center gap-1.5">
             <button 
               type="button"
               onClick={toggleTheme}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+              className="p-2 min-w-[40px] min-h-[40px] flex items-center justify-center text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer touch-manipulation"
               aria-label="Toggle dark mode"
             >
               {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
@@ -158,7 +158,7 @@ export const Navbar = () => {
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(true)}
-                className="flex items-center focus:outline-none cursor-pointer"
+                className="min-w-[40px] min-h-[40px] flex items-center justify-center focus:outline-none cursor-pointer touch-manipulation"
                 aria-label="Open user menu"
               >
                 <AvatarInitials name={user.name} size="sm" />
@@ -167,7 +167,7 @@ export const Navbar = () => {
             <button 
               type="button"
               onClick={() => setMobileMenuOpen(prev => !prev)}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-indigo-600 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800/80 active:scale-95 transition-all cursor-pointer"
+              className="p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center text-slate-700 dark:text-slate-200 hover:text-indigo-600 dark:hover:text-indigo-400 rounded-xl hover:bg-slate-100 dark:hover:bg-slate-800/80 active:scale-95 transition-all cursor-pointer touch-manipulation"
               aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
               aria-expanded={mobileMenuOpen}
             >
@@ -177,9 +177,9 @@ export const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile menu portal to document.body to avoid header backdrop-filter containing-block trap */}
+      {/* Mobile menu portal to document.body */}
       {typeof document !== 'undefined' && createPortal(
-        <div className="lg:hidden">
+        <div className={`lg:hidden ${mobileMenuOpen ? 'pointer-events-auto' : 'pointer-events-none'}`}>
           {/* Backdrop overlay */}
           <div 
             className={`fixed inset-0 bg-black/60 backdrop-blur-sm z-[999] transition-opacity duration-300 ${
@@ -192,8 +192,10 @@ export const Navbar = () => {
           {/* Drawer container */}
           <div 
             data-lenis-prevent
-            className={`fixed top-0 right-0 h-screen h-[100dvh] w-[82%] max-w-sm bg-white dark:bg-[#0d0e24] text-slate-900 dark:text-slate-100 z-[1000] shadow-2xl transition-transform duration-300 ease-out flex flex-col border-l border-gray-100 dark:border-slate-800 ${
-              mobileMenuOpen ? 'translate-x-0' : 'translate-x-full'
+            className={`fixed top-0 right-0 h-[100dvh] max-h-[100dvh] w-[85%] max-w-sm bg-white dark:bg-[#0d0e24] text-slate-900 dark:text-slate-100 z-[1000] shadow-2xl transition-all duration-300 ease-out flex flex-col border-l border-gray-100 dark:border-slate-800 ${
+              mobileMenuOpen 
+                ? 'translate-x-0 opacity-100 pointer-events-auto visible' 
+                : 'translate-x-full opacity-0 pointer-events-none invisible'
             }`}
             role="dialog"
             aria-modal="true"
@@ -205,7 +207,7 @@ export const Navbar = () => {
                 <button 
                   type="button"
                   onClick={toggleTheme}
-                  className="p-2 text-slate-500 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                  className="p-2 text-slate-500 dark:text-slate-300 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer touch-manipulation"
                   aria-label="Toggle theme"
                 >
                   {isDark ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5" />}
@@ -213,7 +215,7 @@ export const Navbar = () => {
                 <button 
                   type="button"
                   onClick={() => setMobileMenuOpen(false)}
-                  className="p-2 text-slate-500 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer"
+                  className="p-2 text-slate-500 hover:text-indigo-600 rounded-full hover:bg-slate-100 dark:hover:bg-slate-800 cursor-pointer touch-manipulation"
                   aria-label="Close menu"
                 >
                   <X className="w-6 h-6" />
@@ -280,19 +282,28 @@ export const Navbar = () => {
                   >
                     Settings
                   </NavLink>
+                  <div className="my-2 border-t border-gray-100 dark:border-slate-800" />
+                  <button
+                    type="button"
+                    onClick={handleLogout}
+                    className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-base font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 active:bg-red-100 dark:active:bg-red-950/60 transition-colors cursor-pointer text-left touch-manipulation"
+                  >
+                    <LogOut className="w-5 h-5 shrink-0" />
+                    <span>Log Out</span>
+                  </button>
                 </>
               )}
             </div>
             
-            <div className="p-4 border-t border-gray-100 dark:border-slate-800 flex-shrink-0 bg-white dark:bg-[#0d0e24]">
+            <div className="p-4 pb-8 sm:pb-4 border-t border-gray-100 dark:border-slate-800 flex-shrink-0 bg-white dark:bg-[#0d0e24]">
               {isAuthenticated ? (
                 <button
                   type="button"
                   onClick={handleLogout}
-                  className="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-[12px] text-sm font-medium text-red-600 dark:text-red-400 border border-red-200 dark:border-red-900/50 hover:bg-red-50 dark:hover:bg-red-950/30 transition-colors cursor-pointer"
+                  className="w-full flex items-center justify-center gap-2 px-4 py-3.5 rounded-xl text-base font-semibold text-white bg-red-600 hover:bg-red-700 active:scale-[0.98] shadow-md shadow-red-500/20 transition-all cursor-pointer touch-manipulation"
                 >
-                  <LogOut className="w-4 h-4" />
-                  Logout
+                  <LogOut className="w-5 h-5" />
+                  <span>Log Out</span>
                 </button>
               ) : (
                 <Button href="/signup" variant="primary" className="w-full" onClick={() => setMobileMenuOpen(false)}>
