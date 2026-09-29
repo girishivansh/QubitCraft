@@ -3,6 +3,7 @@ uvicorn
 qiskit
 qiskit-aer
 pydantic
+email-validator
 groq
 python-dotenv
 motor

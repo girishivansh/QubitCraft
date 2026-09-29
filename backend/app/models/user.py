@@ -1,6 +1,5 @@
 from typing import Optional, List, Literal
-from pydantic import BaseModel, EmailStr, Field
-from datetime import datetime
+from pydantic import BaseModel, Field
 
 UserRole = Literal['student', 'instructor', 'admin']
 
@@ -26,16 +25,16 @@ class UserProfile(UserBase):
 
 class UserCreate(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     password: str
 
 class UserLogin(BaseModel):
-    email: EmailStr
+    email: str
     password: str
 
 class UserGoogleAuth(BaseModel):
     name: str
-    email: EmailStr
+    email: str
     avatar: Optional[str] = None
 
 class UserUpdate(BaseModel):
