@@ -282,15 +282,6 @@ export const Navbar = () => {
                   >
                     Settings
                   </NavLink>
-                  <div className="my-2 border-t border-gray-100 dark:border-slate-800" />
-                  <button
-                    type="button"
-                    onClick={handleLogout}
-                    className="flex items-center gap-3 w-full px-4 py-3 rounded-xl text-base font-semibold text-red-600 dark:text-red-400 hover:bg-red-50 dark:hover:bg-red-950/40 active:bg-red-100 dark:active:bg-red-950/60 transition-colors cursor-pointer text-left touch-manipulation"
-                  >
-                    <LogOut className="w-5 h-5 shrink-0" />
-                    <span>Log Out</span>
-                  </button>
                 </>
               )}
             </div>
